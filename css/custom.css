@@ -1,0 +1,14 @@
+.elsie-swash-caps-regular {
+    font-family: "Elsie Swash Caps", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.elsie-swash-caps-black {
+    font-family: "Elsie Swash Caps", serif;
+    font-weight: 900;
+    font-style: normal;
+}
+html {
+    scroll-behavior: smooth;
+}

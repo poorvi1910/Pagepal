@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/custom.css">
+    <title>Home</title>
+</head>
+<body class="bg-red-100">
+    <nav class="flex items-center bg-red-400 p-6 justify-between">
+
+        <div class="flex items-center text-white mr-6">
+            <span class="font-bold text-xl"> PagePal</span>
+            <img src="/logo.png" alt="PagePal Logo" class="h-9 w-9 ml-2 rounded-full">
+        </div>
+
+        <button id="logout-btn" class="bg-red-400 text-red-100 hover:bg-white hover:text-red-400 rounded mr-4 px-4 py-2">
+            Logout
+        </button>
+    </nav>
+
+    <div class="text-red-400 text-4xl m-4 font-bold flex flex-col items-center pt-8">Hello <%= uname %> !</div>
+    <div class="text-red-400 text-2xl m-2 flex flex-col items-center">Which chapter would you like to open today?</div>
+
+    <div id="services" class="flex flex-col mb-8 p-8 items-center">
+        <div class="flex flex-row justify-center gap-8">
+
+            <div class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center">
+                <h3 class="text-lg font-bold text-red-400 mb-2">My Bucket List</h3>
+                <p class="text-gray-600">Maintain your to-read list here.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center">
+                <h3 class="text-lg font-bold text-red-400 mb-2">Books I Have</h3>
+                <p class="text-gray-600">Tell us which of your books you would love to exchange with someone.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center">
+                <h3 class="text-lg font-bold text-red-400 mb-2">Books I Wish</h3>
+                <p class="text-gray-600">Tell us which of your books you would love to get from someone.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-red-400 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">
+                &copy; 2025 PagePal. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
