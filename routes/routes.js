@@ -12,7 +12,6 @@ router.get('/homepage/:uname', (req, res)=>{
 })
 
 router.post('/login',async(req, res)=>{
-    console.log('Request body:', req.body);
     try{
         const { uname, pword } = req.body;
         const user = await User.findOne({ uname, pword });
@@ -28,7 +27,6 @@ router.post('/login',async(req, res)=>{
 })
 
 router.post('/register',async(req, res)=>{
-    console.log('Request body:', req.body);
     try{
         const { uname, pword } = req.body;
         const existingu = await User.findOne({ uname, pword });
@@ -42,6 +40,31 @@ router.post('/register',async(req, res)=>{
             res.redirect(`/homepage/${uname}`);
         }
     }catch(err){
+        console.log(err);
+    }
+})
+
+router.post('/wishlist/:uname', async(req,res)=>{
+    try{
+        const {uname}=req.params;
+        const wish = req.body["book-title"];
+        const user=await User.findOne({uname});
+        user.wishlist.push(wish);
+        await user.save();
+        res.status(204).send();
+    }catch(err){
+        console.log(err);
+    }
+})
+
+router.get('/wishlist/:uname', async(req,res)=>{
+    try{
+        const {uname}=req.params;
+        const user=await User.findOne({uname});
+        res.json(user.wishlist);
+
+    }
+    catch(err){
         console.log(err);
     }
 })
