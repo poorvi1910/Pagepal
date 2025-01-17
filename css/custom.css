@@ -31,3 +31,10 @@ html {
     background-size: contain; /* Ensures the image scales within its dimensions */
     background-repeat: no-repeat; /* Prevents tiling of the image */
 }
+
+#wishlist-container {
+    max-height: 200px; /* Set the maximum height of the container */
+    overflow-y: auto; /* Enables vertical scrolling when content exceeds max-height */
+    scrollbar-width: thin; /* Optional: makes the scrollbar thinner (for Firefox) */
+    scrollbar-color: #d4d4d4 #ffffff; /* Optional: custom scrollbar colors (for Firefox) */
+}
