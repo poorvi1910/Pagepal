@@ -34,6 +34,7 @@ html {
 
 #wishlist-container {
     max-height: 200px; /* Set the maximum height of the container */
+    max-height: 400px;
     overflow-y: auto; /* Enables vertical scrolling when content exceeds max-height */
     scrollbar-width: thin; /* Optional: makes the scrollbar thinner (for Firefox) */
     scrollbar-color: #d4d4d4 #ffffff; /* Optional: custom scrollbar colors (for Firefox) */
