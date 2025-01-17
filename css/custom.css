@@ -12,3 +12,22 @@
 html {
     scroll-behavior: smooth;
 }
+
+#wishlist-container li {
+    list-style: none; /* Removes default bullet styling */
+    position: relative; /* Allows proper positioning of ::before pseudo-element */
+    padding-left: 25px; /* Adds space for the custom bullet image */
+}
+
+#wishlist-container li::before {
+    content: ''; /* Ensures the pseudo-element is rendered */
+    position: absolute;
+    left: 0; /* Aligns the image to the start of the list item */
+    top: 50%; /* Centers it vertically */
+    transform: translateY(-50%); /* Ensures the bullet image is fully centered */
+    width: 15px; /* Set the width of the bullet image */
+    height: 15px; /* Set the height of the bullet image */
+    background-image: url('/chevron-double-regular.png'); /* Use your image path */
+    background-size: contain; /* Ensures the image scales within its dimensions */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+}
