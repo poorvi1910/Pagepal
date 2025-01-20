@@ -69,4 +69,18 @@ router.get('/wishlist/:uname', async(req,res)=>{
     }
 })
 
+router.post('/wishlist/:uname/:id', async(req, res)=>{
+    try{
+        const {uname, id}=req.params;
+        const user= await User.findOne({uname});
+        if(user){
+            user.wishlist.splice(id, 1);
+            await user.save();
+            res.status(204).send();
+        }
+    }catch(err){
+        console.log(err);
+    }
+})
+
 module.exports=router;

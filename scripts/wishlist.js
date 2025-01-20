@@ -19,12 +19,13 @@ async function fetchWishlist(){
         
         wishlistContainer.innerHTML = '';
         
-        wishlist.forEach(book => {
+        wishlist.forEach((book,index) => {
             const li = document.createElement('li');
             const bookSpan = document.createElement('span');
             bookSpan.textContent = book;
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-btn';
+
             li.appendChild(bookSpan);
             li.appendChild(deleteButton);
             wishlistContainer.appendChild(li);
@@ -34,6 +35,22 @@ async function fetchWishlist(){
         console.log(err);
     }
 }
+
+wishlistContainer.addEventListener('click',async (e)=>{
+    if(e.target.classList.contains('delete-btn')){
+        const li=e.target.closest('li');
+        const index=Array.from(wishlistContainer.children).indexOf(li);
+        const uname = wishForm.action.split('/').pop();
+        try{
+            const response= await fetch(`/wishlist/${uname}/${index}`, {
+                method: 'POST'
+            });
+            await fetchWishlist();
+        }catch(err){
+            console.log(err);
+        }
+    }
+})
 
 listModal.addEventListener('click', (e) => {
     if (e.target === listModal) {
