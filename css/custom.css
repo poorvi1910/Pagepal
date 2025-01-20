@@ -17,6 +17,11 @@ html {
     list-style: none; /* Removes default bullet styling */
     position: relative; /* Allows proper positioning of ::before pseudo-element */
     padding-left: 25px; /* Adds space for the custom bullet image */
+    padding-right: 30px;
+    margin-bottom: 10px;
+    white-space: normal; /* Ensures text wraps to the next line */
+    word-wrap: break-word; /* Allows long words to wrap onto the next line */
+    overflow-wrap: break-word;
 }
 
 #wishlist-container li::before {
@@ -32,10 +37,26 @@ html {
     background-repeat: no-repeat; /* Prevents tiling of the image */
 }
 
+.delete-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border: none;
+    background-image: url('/trash.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
 #wishlist-container {
     max-height: 200px; /* Set the maximum height of the container */
-    max-height: 400px;
+    width: 400px;
     overflow-y: auto; /* Enables vertical scrolling when content exceeds max-height */
-    scrollbar-width: thin; /* Optional: makes the scrollbar thinner (for Firefox) */
-    scrollbar-color: #d4d4d4 #ffffff; /* Optional: custom scrollbar colors (for Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d4 #ffffff;
+    padding-right: 20px;
+    position: relative;
 }

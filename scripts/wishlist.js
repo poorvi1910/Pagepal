@@ -21,8 +21,12 @@ async function fetchWishlist(){
         
         wishlist.forEach(book => {
             const li = document.createElement('li');
-            li.textContent = book;
-            li.className = 'py-2 px-4 hover:bg-gray-100 rounded';
+            const bookSpan = document.createElement('span');
+            bookSpan.textContent = book;
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-btn';
+            li.appendChild(bookSpan);
+            li.appendChild(deleteButton);
             wishlistContainer.appendChild(li);
         });
         
