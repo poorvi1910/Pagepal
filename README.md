@@ -1,4 +1,4 @@
-# Pagepal
+# Pagepal [IN PROGRESS]
 A book exchange site for all the book lovers out there <br>
 
 A Full-stack book exchange web application using Node.js, Express, HTML, Tailwind CSS, MongoDB and Websocket.
