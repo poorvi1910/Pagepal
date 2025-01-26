@@ -110,4 +110,10 @@ router.post('/wishlist/:uname/:id',isAuthenticated, async(req, res)=>{
     }
 })
 
+router.post('/logout', (req, res) => {
+    req.session = null;
+    console.log('User logged out');
+    res.redirect('/');
+  });
+
 module.exports=router;

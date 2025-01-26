@@ -15,9 +15,12 @@
             <img src="/logo.png" alt="PagePal Logo" class="h-9 w-9 ml-2 rounded-full">
         </div>
 
-        <button id="logout-btn" class="bg-red-400 text-red-100 hover:bg-white hover:text-red-400 rounded mr-4 px-4 py-2">
-            Logout
-        </button>
+        <form method="post" action="/logout">
+            <button type="submit" class="bg-red-400 text-red-100 hover:bg-white hover:text-red-400 rounded mr-4 px-4 py-2">
+                Logout
+            </button>
+        </form>
+    
     </nav>
 
     <main class="flex-1">
