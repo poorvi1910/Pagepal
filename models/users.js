@@ -12,6 +12,16 @@ const userSchema=mongoose.Schema({
     wishlist: {
         type: [String],
         default: []
+    },
+
+    searchbooks: {
+        type: [String],
+        default: []
+    },
+
+    givebooks: {
+        type: [String],
+        default: []
     }
 })
 
