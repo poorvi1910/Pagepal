@@ -11,7 +11,6 @@ listBox.addEventListener('click', ()=>{
 });
 
 async function fetchWishlist(){
-    wishlistContainer.innerHTML = '<div>Loading...</div>';
     try{
         const uname = wishForm.action.split('/').pop();
         const response = await fetch(`/wishlist/${uname}`);

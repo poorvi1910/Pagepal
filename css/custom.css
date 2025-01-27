@@ -13,6 +13,7 @@ html {
     scroll-behavior: smooth;
 }
 
+#ownlist-container li,
 #wishlist-container li {
     list-style: none; /* Removes default bullet styling */
     position: relative; /* Allows proper positioning of ::before pseudo-element */
@@ -24,6 +25,7 @@ html {
     overflow-wrap: break-word;
 }
 
+#ownlist-container li::before,
 #wishlist-container li::before {
     content: ''; /* Ensures the pseudo-element is rendered */
     position: absolute;
@@ -51,6 +53,7 @@ html {
     cursor: pointer;
 }
 
+#ownlist-container,
 #wishlist-container {
     max-height: 200px; /* Set the maximum height of the container */
     width: 400px;

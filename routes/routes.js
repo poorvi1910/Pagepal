@@ -110,6 +110,48 @@ router.post('/wishlist/:uname/:id',isAuthenticated, async(req, res)=>{
     }
 })
 
+router.post('/ownlist/:uname',isAuthenticated, async(req,res)=>{
+    try{
+        const {uname}=req.params;
+        const wish = req.body["book-title"];
+        const user=await User.findOne({uname});
+        user.own.push(wish);
+        await user.save();
+        res.sendStatus(204)
+    }catch(err){
+        console.log(err);
+    }
+})
+
+router.get('/ownlist/:uname',isAuthenticated, async(req,res)=>{
+    try{
+        const {uname}=req.params;
+        const user=await User.findOne({uname});
+        res.json(user.own);
+
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+})
+
+router.post('/ownlist/:uname/:id',isAuthenticated, async(req, res)=>{
+    try{
+        const {uname, id}=req.params;
+        const user= await User.findOne({uname});
+        if(user){
+            user.own.splice(id, 1);
+            await user.save();
+            res.status(204).send();
+        }
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+
+    }
+})
+
 router.post('/logout', (req, res) => {
     req.session = null;
     console.log('User logged out');

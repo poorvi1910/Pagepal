@@ -14,7 +14,7 @@ const userSchema=mongoose.Schema({
         default: []
     },
 
-    givebooks: {
+    own: {
         type: [String],
         default: []
     }
