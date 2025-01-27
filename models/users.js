@@ -14,11 +14,6 @@ const userSchema=mongoose.Schema({
         default: []
     },
 
-    searchbooks: {
-        type: [String],
-        default: []
-    },
-
     givebooks: {
         type: [String],
         default: []

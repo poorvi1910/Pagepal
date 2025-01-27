@@ -13,10 +13,10 @@ db.once('open',()=>console.log("Connected to database"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
-    secret: 'finD#74N$*ce8bB#*9HeizrjapUGSG83?><w@', // Replace with a strong secret
+    secret: 'finD#74N$*ce8bB#*9HeizrjapUGSG83?><w@',
     resave: false,
     saveUninitialized: false,
-      cookie: { secure: false, maxAge: 600000 }, // Set `secure: true` in production
+      cookie: { secure: false, maxAge: 600000 },
     })
   );
 
