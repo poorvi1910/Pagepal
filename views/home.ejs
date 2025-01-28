@@ -40,12 +40,12 @@
                     <p class="text-gray-600">Lets people know you have the book they are searching for.</p>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center transform hover:scale-110 hover:shadow-xl transition-all duration-200">
+                <div id="req-box" class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center transform hover:scale-110 hover:shadow-xl transition-all duration-200">
                     <h3 class="text-lg font-bold text-red-400 mb-2">Requests</h3>
-                    <p class="text-gray-600">Check if your request was acceted or if someone has requested you</p>
+                    <p class="text-gray-600">Check if your request was accepted or if someone has requested you</p>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center transform hover:scale-110 hover:shadow-xl transition-all duration-200">
+                <div id="chat-box" class="bg-white p-6 rounded-lg shadow-md w-[200px] text-center transform hover:scale-110 hover:shadow-xl transition-all duration-200">
                     <h3 class="text-lg font-bold text-red-400 mb-2">Connect</h3>
                     <p class="text-gray-600">Connect with people who have accepted request</p>
                 </div>
@@ -54,6 +54,7 @@
 
         <%- include('wishlist') %>
         <%- include('own') %>
+        <%- include('reqbox') %>
         <%- include('chat') %>
     </main>
 

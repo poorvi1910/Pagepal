@@ -17,7 +17,17 @@ const userSchema=mongoose.Schema({
     own: {
         type: [String],
         default: []
-    }
+    },
+
+    sentreq:{
+        type: [String],
+        default:[]
+    },
+
+    recreq:{
+        type: [String],
+        default:[]
+    },
 })
 
 module.exports=mongoose.model('User',userSchema);
