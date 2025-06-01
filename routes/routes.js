@@ -110,6 +110,76 @@ router.post('/wishlist/:uname/:id',isAuthenticated, async(req, res)=>{
     }
 })
 
+router.get('/requests/:uname', isAuthenticated, async (req, res) => {
+    try {
+        const { uname } = req.params;
+        const user = await User.findOne({ uname });
+        res.json(user.recreq);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/find/:bookTitle', isAuthenticated, async (req, res) => {
+    try {
+        const users = await User.find({ own: req.params.bookTitle }, 'uname');
+        res.json(users.map(u => u.uname));
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/sendreq', isAuthenticated, async (req, res) => {
+    try {
+        const { from, to } = req.body;
+        const user = await User.findOne({ uname: to });
+        if (!user.recreq.includes(from)) {
+            user.recreq.push(from);
+            await user.save();
+        }
+        res.sendStatus(204);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/acceptreq', isAuthenticated, async (req, res) => {
+    try {
+        const { from, to } = req.body;
+        const user = await User.findOne({ uname: to });
+        const sender = await User.findOne({ uname: from });
+
+        if (!user.friend.includes(from)) user.friend.push(from);
+        if (!sender.friend.includes(to)) sender.friend.push(to);
+
+        user.recreq = user.recreq.filter(u => u !== from);
+
+        await user.save();
+        await sender.save();
+
+        res.sendStatus(204);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/rejectreq', isAuthenticated, async (req, res) => {
+    try {
+        const { from, to } = req.body;
+        const user = await User.findOne({ uname: to });
+        user.recreq = user.recreq.filter(u => u !== from);
+        await user.save();
+        res.sendStatus(204);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
 router.post('/ownlist/:uname',isAuthenticated, async(req,res)=>{
     try{
         const {uname}=req.params;

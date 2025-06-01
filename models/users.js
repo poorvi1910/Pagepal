@@ -19,7 +19,7 @@ const userSchema=mongoose.Schema({
         default: []
     },
 
-    sentreq:{
+    friend:{
         type: [String],
         default:[]
     },
