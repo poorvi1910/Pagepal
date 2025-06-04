@@ -13,7 +13,7 @@ ownBox.addEventListener('click', ()=>{
 async function fetchownlist(){
     try{
         const uname = ownForm.action.split('/').pop();
-        const response = await fetch(`/ownlist/${uname}`);
+        const response = await fetch(`/ownlist`);
         const ownlist = await response.json();
         
         ownlistContainer.innerHTML = '';
@@ -41,7 +41,7 @@ ownlistContainer.addEventListener('click',async (e)=>{
         const index=Array.from(ownlistContainer.children).indexOf(li);
         const uname = ownForm.action.split('/').pop();
         try{
-            const response= await fetch(`/ownlist/${uname}/${index}`, {
+            const response= await fetch(`/ownlist/${index}`, {
                 method: 'POST'
             });
             await fetchownlist();

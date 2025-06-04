@@ -13,7 +13,7 @@ listBox.addEventListener('click', ()=>{
 async function fetchWishlist(){
     try{
         const uname = wishForm.action.split('/').pop();
-        const response = await fetch(`/wishlist/${uname}`);
+        const response = await fetch(`/wishlist`);
         const wishlist = await response.json();
         
         wishlistContainer.innerHTML = '';
@@ -41,7 +41,7 @@ wishlistContainer.addEventListener('click',async (e)=>{
         const index=Array.from(wishlistContainer.children).indexOf(li);
         const uname = wishForm.action.split('/').pop();
         try{
-            const response= await fetch(`/wishlist/${uname}/${index}`, {
+            const response= await fetch(`/wishlist/${index}`, {
                 method: 'POST'
             });
             await fetchWishlist();

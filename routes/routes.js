@@ -16,10 +16,10 @@ router.get('/', (req, res)=>{
     res.render('index');
 })
 
-router.get('/homepage/:uname',isAuthenticated, (req, res)=>{
-    const uname=req.params.uname;
-    res.render('home',{uname});
-})
+router.get('/homepage', isAuthenticated, (req, res) => {
+    const uname = req.session.uname;
+    res.render('home', { uname });
+});
 
 router.post('/login',async(req, res)=>{
     try{
@@ -30,7 +30,7 @@ router.post('/login',async(req, res)=>{
             if (isMatch){
                 req.session.uname=uname;
                 console.log("Successful login");
-                res.redirect(`/homepage/${uname}`);
+                res.redirect(`/homepage`);
             }
             else {
                 console.log("Invalid credentials");
@@ -60,7 +60,7 @@ router.post('/register',async(req, res)=>{
             await user.save();
             req.session.uname=uname;
             console.log("Successful register");
-            res.redirect(`/homepage/${uname}`);
+            res.redirect(`/homepage`);
         }
     }catch(err){
         res.sendStatus(500);
@@ -68,36 +68,33 @@ router.post('/register',async(req, res)=>{
     }
 })
 
-router.post('/wishlist/:uname',isAuthenticated, async(req,res)=>{
-    try{
-        const {uname}=req.params;
+router.post('/wishlist', isAuthenticated, async (req, res) => {
+    try {
         const wish = req.body["book-title"];
-        const user=await User.findOne({uname});
+        const user = await User.findOne({ uname: req.session.uname });
         user.wishlist.push(wish);
         await user.save();
-        res.sendStatus(204)
-    }catch(err){
-        console.log(err);
-    }
-})
-
-router.get('/wishlist/:uname',isAuthenticated, async(req,res)=>{
-    try{
-        const {uname}=req.params;
-        const user=await User.findOne({uname});
-        res.json(user.wishlist);
-
-    }
-    catch(err){
+        res.sendStatus(204);
+    } catch (err) {
         console.log(err);
         res.sendStatus(500);
     }
-})
+});
 
-router.post('/wishlist/:uname/:id',isAuthenticated, async(req, res)=>{
+router.get('/wishlist', isAuthenticated, async (req, res) => {
+    try {
+        const user = await User.findOne({ uname: req.session.uname });
+        res.json(user.wishlist);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+
+router.post('/wishlist/:id',isAuthenticated, async(req, res)=>{
     try{
-        const {uname, id}=req.params;
-        const user= await User.findOne({uname});
+        const user = await User.findOne({ uname: req.session.uname });
         if(user){
             user.wishlist.splice(id, 1);
             await user.save();
@@ -180,11 +177,10 @@ router.post('/rejectreq', isAuthenticated, async (req, res) => {
     }
 });
 
-router.post('/ownlist/:uname',isAuthenticated, async(req,res)=>{
+router.post('/ownlist',isAuthenticated, async(req,res)=>{
     try{
-        const {uname}=req.params;
         const wish = req.body["book-title"];
-        const user=await User.findOne({uname});
+        const user = await User.findOne({ uname: req.session.uname });
         user.own.push(wish);
         await user.save();
         res.sendStatus(204)
@@ -193,10 +189,9 @@ router.post('/ownlist/:uname',isAuthenticated, async(req,res)=>{
     }
 })
 
-router.get('/ownlist/:uname',isAuthenticated, async(req,res)=>{
+router.get('/ownlist',isAuthenticated, async(req,res)=>{
     try{
-        const {uname}=req.params;
-        const user=await User.findOne({uname});
+        const user = await User.findOne({ uname: req.session.uname });
         res.json(user.own);
 
     }
@@ -206,10 +201,9 @@ router.get('/ownlist/:uname',isAuthenticated, async(req,res)=>{
     }
 })
 
-router.post('/ownlist/:uname/:id',isAuthenticated, async(req, res)=>{
+router.post('/ownlist/:id',isAuthenticated, async(req, res)=>{
     try{
-        const {uname, id}=req.params;
-        const user= await User.findOne({uname});
+        const user = await User.findOne({ uname: req.session.uname });
         if(user){
             user.own.splice(id, 1);
             await user.save();
@@ -223,9 +217,13 @@ router.post('/ownlist/:uname/:id',isAuthenticated, async(req, res)=>{
 })
 
 router.post('/logout', (req, res) => {
-    req.session = null;
-    console.log('User logged out');
-    res.redirect('/');
-  });
+    req.session.destroy(err => {
+        if (err) {
+            console.log('Logout error:', err);
+            return res.sendStatus(500);
+        }
+        res.redirect('/');
+    });
+});
 
 module.exports=router;
