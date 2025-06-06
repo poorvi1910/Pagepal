@@ -216,6 +216,17 @@ router.post('/ownlist/:id',isAuthenticated, async(req, res)=>{
     }
 })
 
+router.get('/chat', isAuthenticated, async (req, res) => {
+  try {
+    const user = await User.findOne({ uname: req.session.uname });
+    const friends = await User.find({ uname: { $in: user.friend } });
+    res.json(friends);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
 router.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {

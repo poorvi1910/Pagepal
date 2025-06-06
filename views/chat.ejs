@@ -7,8 +7,24 @@
 </head>
 <body>
     <div id="chat-modal" class="fixed inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center hidden">
-        <div class="bg-white rounded-lg p-8">
+        <div class="bg-white rounded-lg p-8 w-[90%] h-[90%] flex flex-col justify-center items-center">
             <h2 class="text-red-400 text-xl font-bold mb-4 text-center">Chat</h2>
+            <div class="flex flex-row w-[98%] h-[98%]">
+                <div id="friend-list" class="bg-red-300 w-1/4 h-full rounded-sm">
+                    <h2 class="text-white font-bold text-lg text-center p-4"> Friends</h3>
+                    <ul id="chat-user-list"></ul>
+                </div>
+                <div id="chat" class="bg-red-100 h-full w-3/4 rounded-sm flex flex-col justify-center items-center">
+                    <div class="bg-red-100 h-[95%] w-full rounded-sm">
+
+                    </div>
+                    <div class="w-full rounded-sm">
+                        <form action="" id="typebox" class="w-[98%] h-[98%]">
+                            <input type="text" placeholder="Type message..." id="type" class="w-full h-12 m-2 p-3 focus:outline-none focus:ring-2 focus:ring-red-400 rounded-sm">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
