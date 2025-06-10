@@ -2,7 +2,8 @@ const mongoose=require('mongoose');
 const userSchema=mongoose.Schema({
     uname:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     pword:{

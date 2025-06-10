@@ -15,11 +15,9 @@
                     <ul id="chat-user-list"></ul>
                 </div>
                 <div id="chat" class="bg-red-100 h-full w-3/4 rounded-sm flex flex-col justify-center items-center">
-                    <div class="bg-red-100 h-[95%] w-full rounded-sm">
-
-                    </div>
+                    <div id="chat-messages" class="bg-red-100 h-[95%] w-full rounded-sm overflow-y-auto flex flex-col p-4 space-y-2"></div>
                     <div class="w-full rounded-sm">
-                        <form action="" id="typebox" class="w-[98%] h-[98%] hidden">
+                        <form action="#" id="typebox" class="w-[98%] h-[98%] hidden">
                             <input type="text" placeholder="Type message..." id="type" class="w-full h-12 m-2 p-3 focus:outline-none focus:ring-2 focus:ring-red-400 rounded-sm">
                         </form>
                     </div>
@@ -28,6 +26,8 @@
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/chatroom.js"></script>
+    
 </body>
 </html>

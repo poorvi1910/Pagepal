@@ -3,7 +3,12 @@ const express=require("express");
 const mongoose=require("mongoose");
 const PORT= process.env.PORT || 4000;
 const app=express();
+const { createServer } = require("node:http");
+const { Server } = require('socket.io');
+const server = createServer(app);
+const io = new Server(server);
 const session = require('express-session');
+const Chat = require('./models/chat');
 
 mongoose.connect(process.env.DB_URI);
 db=mongoose.connection;
@@ -20,10 +25,31 @@ app.use(session({
     })
   );
 
+  io.on('connection', (socket) => {
+  console.log("A user connected");
+
+  socket.on('joinRoom', ({ senderId, receiverId }) => {
+    const roomId = [senderId, receiverId].sort().join('-');
+    socket.join(roomId);
+    socket.roomId = roomId;
+  });
+
+  socket.on('chatMessage', async ({ senderId, receiverId, message }) => {
+    const roomId = [senderId, receiverId].sort().join('-');
+    const chat = new Chat({ sender_id: senderId, receiver_id: receiverId, message });
+    await chat.save();
+    io.to(roomId).emit('message', { senderId, message, timestamp: new Date() });
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+});
+
 app.use('/',require("./routes/routes"));
 app.set('view engine', 'ejs');
 
-app.listen(PORT, ()=>{
+server.listen(PORT, ()=>{
     console.log(`Server started at http://localhost:${PORT}`);
 });
 

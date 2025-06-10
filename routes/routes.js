@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const User=require('../models/users');
+const Chat = require('../models/chat');
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
@@ -220,12 +221,35 @@ router.get('/chat', isAuthenticated, async (req, res) => {
   try {
     const user = await User.findOne({ uname: req.session.uname });
     const friends = await User.find({ uname: { $in: user.friend } });
-    res.json(friends);
+    res.json({
+      currentUser: { _id: user._id },
+      friends
+    });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
 });
+
+router.get('/chat/history/:otherUserId', async (req, res) => {
+  try {
+    const currentUser = await User.findOne({ uname: req.session.uname });
+    if (!currentUser) return res.status(404).json({ error: "Current user not found" });
+
+    const chats = await Chat.find({
+      $or: [
+        { sender_id: currentUser._id, receiver_id: req.params.otherUserId },
+        { sender_id: req.params.otherUserId, receiver_id: currentUser._id }
+      ]
+    }).sort({ createdAt: 1 });
+
+    res.json(chats);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch chat history" });
+  }
+});
+
 
 router.post('/logout', (req, res) => {
     req.session.destroy(err => {
