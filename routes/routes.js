@@ -97,7 +97,7 @@ router.post('/wishlist/:id',isAuthenticated, async(req, res)=>{
     try{
         const user = await User.findOne({ uname: req.session.uname });
         if(user){
-            user.wishlist.splice(id, 1);
+            user.wishlist.splice(req.params.id, 1);
             await user.save();
             res.status(204).send();
         }
@@ -206,7 +206,7 @@ router.post('/ownlist/:id',isAuthenticated, async(req, res)=>{
     try{
         const user = await User.findOne({ uname: req.session.uname });
         if(user){
-            user.own.splice(id, 1);
+            user.own.splice(req.params.id, 1);
             await user.save();
             res.status(204).send();
         }
