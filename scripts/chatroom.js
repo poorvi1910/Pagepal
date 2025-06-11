@@ -50,19 +50,17 @@ async function selectChat(user) {
     const res = await fetch(`/chat/history/${selectedUser._id}`);
     const messages = await res.json();
     const chatDiv = document.getElementById("chat-messages");
-
+    
     chatDiv.innerHTML = '';
     messages.forEach(msg => {
-    const wrapper = document.createElement('div');
-    wrapper.className = msg.sender_id === currentUser._id ? 'w-full flex justify-end' : 'w-full flex justify-start';
+        const wrapper = document.createElement('div');
+        wrapper.className = msg.sender_id === currentUser._id ? 'self-end max-w-[50%] bg-red-300 text-white rounded-xl px-4 py-2 break-words' : 'self-start max-w-[50%] text-red-300 bg-white rounded-xl px-4 py-2 break-words';
+        const msgEl = document.createElement('p');
+        msgEl.textContent = msg.message;
+        wrapper.appendChild(msgEl);
+        chatDiv.appendChild(wrapper);
+    });
 
-    const msgEl = document.createElement('p');
-    msgEl.className = 'bg-red-200 rounded-lg px-4 py-2 max-w-xs break-words';
-    msgEl.textContent = msg.message;
-
-    wrapper.appendChild(msgEl);
-    chatDiv.appendChild(wrapper);
-});
 }
 
 typeBox.addEventListener("submit", function (e) {
