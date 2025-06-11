@@ -26,5 +26,8 @@ PagePal is a full-stack web application built using Node.js, Express, MongoDB, T
 - **Real-Time Communication:** Socket.IO
 
 ## UI
+### Click the thumbnail below to watch the demo:
+
+[![Demo](https://github.com/user-attachments/assets/20fec150-89d5-425d-9f89-02c3c82e90c8)](./Pagepal.mp4)
 
 
