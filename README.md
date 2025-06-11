@@ -10,7 +10,7 @@ PagePal is a full-stack web application built using Node.js, Express, MongoDB, T
   Users can maintain a wishlist of books they are looking for. If someone uploads a book that matches another user's wishlist, they can find and reach out to each other.
 
 - **Friend Requests and Chat**  
-  Users can send friend requests to others who have the books they’re looking for. Upon acceptance, they can initiate real-time chats using Socket.IO to discuss the details of the exchange.
+  Users can send friend requests to others who have the books they’re looking for. Upon acceptance, they can initiate real-time chats using Socket.IO to discuss the details of the exchange. The **chats persist** even after the user logs out.
 
 - **Search and Browse**  
   Users can search for specific book titles or browse through all available books listed on the platform.
