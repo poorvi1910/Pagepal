@@ -78,13 +78,12 @@ typeBox.addEventListener("submit", function (e) {
 });
 
 socket.on('message', ({ senderId, message, timestamp }) => {
-  const chatDiv = document.getElementById("chat-messages");
-  const wrapper = document.createElement('div');
-  wrapper.className = senderId === currentUser._id ? 'w-full flex justify-end': 'w-full flex justify-start';
-  const msgEl = document.createElement('p');
-  msgEl.className = 'bg-red-200 rounded-lg px-4 py-2 max-w-xs break-words';
-  msgEl.textContent = message;
-  wrapper.appendChild(msgEl);
-  chatDiv.appendChild(wrapper);
-  chatDiv.scrollTop = chatDiv.scrollHeight;
+    const chatDiv = document.getElementById("chat-messages");
+    const wrapper = document.createElement('div');
+    wrapper.className = senderId === currentUser._id ? 'self-end max-w-[50%] bg-red-300 text-white rounded-xl px-4 py-2 break-words' : 'self-start max-w-[50%] text-red-300 bg-white rounded-xl px-4 py-2 break-words';
+    const msgEl = document.createElement('p');
+    msgEl.textContent = message;
+    wrapper.appendChild(msgEl);
+    chatDiv.appendChild(wrapper);
+    chatDiv.scrollTop = chatDiv.scrollHeight;
 });
