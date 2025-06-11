@@ -39,7 +39,7 @@ sendForm.addEventListener('submit', async (e) => {
             const li = document.createElement('li');
             li.textContent = owner + " ";
             const sendBtn = document.createElement('button');
-            sendBtn.textContent = "✔";
+            sendBtn.className = 'accept-btn';
             sendBtn.addEventListener('click', async () => {
                 await fetch(`/sendreq`, {
                     method: 'POST',
@@ -70,7 +70,7 @@ accbut.addEventListener('click', async () => {
             li.textContent = user + " ";
 
             const acceptBtn = document.createElement('button');
-            acceptBtn.textContent = "✔";
+            acceptBtn.className = 'accept-btn';
             acceptBtn.addEventListener('click', async () => {
                 await fetch(`/acceptreq`, {
                     method: 'POST',
@@ -81,7 +81,7 @@ accbut.addEventListener('click', async () => {
             });
 
             const rejectBtn = document.createElement('button');
-            rejectBtn.textContent = "🗑";
+            rejectBtn.className = 'delete-btn';
             rejectBtn.addEventListener('click', async () => {
                 await fetch(`/rejectreq`, {
                     method: 'POST',

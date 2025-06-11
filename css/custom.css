@@ -14,29 +14,33 @@ html {
 }
 
 #ownlist-container li,
-#wishlist-container li {
-    list-style: none; /* Removes default bullet styling */
-    position: relative; /* Allows proper positioning of ::before pseudo-element */
-    padding-left: 25px; /* Adds space for the custom bullet image */
+#wishlist-container li,
+#send-container li,
+#acc-container li {
+    list-style: none; 
+    position: relative; 
+    padding-left: 25px;
     padding-right: 30px;
     margin-bottom: 10px;
-    white-space: normal; /* Ensures text wraps to the next line */
-    word-wrap: break-word; /* Allows long words to wrap onto the next line */
+    white-space: normal; 
+    word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 #ownlist-container li::before,
-#wishlist-container li::before {
-    content: ''; /* Ensures the pseudo-element is rendered */
+#wishlist-container li::before,
+#send-container li::before,
+#acc-container li::before {
+    content: ''; 
     position: absolute;
-    left: 0; /* Aligns the image to the start of the list item */
-    top: 50%; /* Centers it vertically */
-    transform: translateY(-50%); /* Ensures the bullet image is fully centered */
-    width: 15px; /* Set the width of the bullet image */
-    height: 15px; /* Set the height of the bullet image */
-    background-image: url('/chevron-double-regular.png'); /* Use your image path */
-    background-size: contain; /* Ensures the image scales within its dimensions */
-    background-repeat: no-repeat; /* Prevents tiling of the image */
+    left: 0; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 15px;
+    height: 15px; 
+    background-image: url('/chevron-double-regular.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
 }
 
 .delete-btn {
@@ -53,11 +57,27 @@ html {
     cursor: pointer;
 }
 
+.accept-btn {
+    position: absolute;
+    right: 30px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border: none;
+    background-image: url('/check.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
 #ownlist-container,
-#wishlist-container {
-    max-height: 200px; /* Set the maximum height of the container */
+#wishlist-container,
+#send-container,
+#acc-container {
+    max-height: 200px; 
     width: 400px;
-    overflow-y: auto; /* Enables vertical scrolling when content exceeds max-height */
+    overflow-y: auto; 
     scrollbar-width: thin;
     scrollbar-color: #d4d4d4 #ffffff;
     padding-right: 20px;

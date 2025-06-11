@@ -1120,6 +1120,18 @@ video {
     width: auto;
   }
 
+  .sm\:w-\[500px\] {
+    width: 500px;
+  }
+
+  .sm\:w-\[420px\] {
+    width: 420px;
+  }
+
+  .sm\:w-\[430px\] {
+    width: 430px;
+  }
+
   .sm\:flex-row {
     flex-direction: row;
   }

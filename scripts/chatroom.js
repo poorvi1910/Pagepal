@@ -45,12 +45,10 @@ async function selectChat(user) {
     currentUser = data.currentUser;
     selectedUser = user;
     typeBox.classList.remove("hidden");
-    const roomId = [currentUser._id, selectedUser._id].sort().join('-');
     socket.emit('joinRoom', { senderId: currentUser._id, receiverId: selectedUser._id });
     const res = await fetch(`/chat/history/${selectedUser._id}`);
     const messages = await res.json();
     const chatDiv = document.getElementById("chat-messages");
-    
     chatDiv.innerHTML = '';
     messages.forEach(msg => {
         const wrapper = document.createElement('div');
